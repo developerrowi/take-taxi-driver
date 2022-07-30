@@ -2,6 +2,11 @@
 
 import 'package:geolocator/geolocator.dart';
 import 'package:pocket_taxi/models/location.dart';
+import 'package:pocket_taxi/supabase/auth-supabase.dart';
+import 'package:pocket_taxi/supabase/driver-location.dart';
+
+SupabaseAuthService supabaseAuthService = SupabaseAuthService();
+DriverLocationService driverLocationService = DriverLocationService();
 
 class LocationService {
   static final LocationService _instance = LocationService._internal();
@@ -27,6 +32,7 @@ class LocationService {
   getCurrentLocation() async {
     var getLoc = await _determinePosition();
     setCurrentLocation(getLoc);
+    driverLocationService.updateDriverLocation(_currentLocation);
     print(getLoc);
   }
 

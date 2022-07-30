@@ -15,7 +15,7 @@ class _EmailLogin extends State<EmailLogin> {
   TextEditingController emailController = new TextEditingController();
 
   TextEditingController password = new TextEditingController();
-  var supabase = SupabaseInstance();
+  var supabase = SupabaseAuthService();
 
   @override
   Widget build(BuildContext context) {

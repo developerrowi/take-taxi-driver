@@ -22,7 +22,7 @@ class _RegisterState extends State<Register> {
   TextEditingController emailController = new TextEditingController();
 
   TextEditingController password = new TextEditingController();
-  var supabase = SupabaseInstance();
+  var supabase = SupabaseAuthService();
   TextEditingController passwordController = new TextEditingController();
   var firebase = FireBaseInstance();
 

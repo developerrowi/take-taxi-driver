@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:pocket_taxi/firebase/firebase.dart';
 import 'package:pocket_taxi/supabase/auth-supabase.dart';
 
-var supabase = new SupabaseInstance();
+var supabase = new SupabaseAuthService();
 
 Widget _buildMenuItem(
     BuildContext context, Widget title, String routeName, String currentRoute) {

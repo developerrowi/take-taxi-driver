@@ -15,7 +15,7 @@ Future<void> main() async {
   LocationService _locationService = LocationService();
   await _locationService.getCurrentLocation();
 
-  var supaBase = new SupabaseInstance();
+  var supaBase = new SupabaseAuthService();
   supaBase.initializeSupabase();
 
   runApp(MyApp());
