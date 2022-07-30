@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pocket_taxi/firebase/firebase.dart';
-import 'package:pocket_taxi/supabase/auth-supabase.dart';
+import 'package:take_taxi_driver/firebase/firebase.dart';
+import 'package:take_taxi_driver/supabase/auth-supabase.dart';
 
 var supabase = new SupabaseAuthService();
 

@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pocket_taxi/services/location.service.dart';
-import 'package:pocket_taxi/services/directions.service.dart';
+import 'package:take_taxi_driver/services/location.service.dart';
+import 'package:take_taxi_driver/services/directions.service.dart';
 
 import '../firebase/firebase.dart';
 import '../supabase/user-location.dart';

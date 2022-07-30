@@ -1,4 +1,4 @@
-import 'package:pocket_taxi/models/driver.dart';
+import 'package:take_taxi_driver/models/driver.dart';
 
 class AuthService {
   static final AuthService _instance = AuthService._internal();

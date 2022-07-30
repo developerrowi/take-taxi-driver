@@ -4,8 +4,8 @@ import '../firebase/firebase.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:pocket_taxi/widgets/colors.dart';
-import 'package:pocket_taxi/widgets/SocialButtons.dart';
+import 'package:take_taxi_driver/widgets/colors.dart';
+import 'package:take_taxi_driver/widgets/SocialButtons.dart';
 
 final Color facebookColor = const Color(0xff39579A);
 final Color googleColor = const Color(0xffDF4A32);

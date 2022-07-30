@@ -1,9 +1,9 @@
 // ignore_for_file: unused_element
 
 import 'package:geolocator/geolocator.dart';
-import 'package:pocket_taxi/models/location.dart';
-import 'package:pocket_taxi/supabase/auth-supabase.dart';
-import 'package:pocket_taxi/supabase/driver-location.dart';
+import 'package:take_taxi_driver/models/location.dart';
+import 'package:take_taxi_driver/supabase/auth-supabase.dart';
+import 'package:take_taxi_driver/supabase/driver-location.dart';
 
 SupabaseAuthService supabaseAuthService = SupabaseAuthService();
 DriverLocationService driverLocationService = DriverLocationService();

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-// import 'package:pocket_taxi/pages/animation/button_animation.dart';
-import 'package:pocket_taxi/firebase/firebase.dart';
-import 'package:pocket_taxi/routes.dart';
-import 'package:pocket_taxi/services/auth.service.dart';
-import 'package:pocket_taxi/services/location.service.dart';
-import 'package:pocket_taxi/supabase/auth-supabase.dart';
+// import 'package:take_taxi_driver/pages/animation/button_animation.dart';
+import 'package:take_taxi_driver/firebase/firebase.dart';
+import 'package:take_taxi_driver/routes.dart';
+import 'package:take_taxi_driver/services/auth.service.dart';
+import 'package:take_taxi_driver/services/location.service.dart';
+import 'package:take_taxi_driver/supabase/auth-supabase.dart';
 
-import 'package:pocket_taxi/widgets/colors.dart';
+import 'package:take_taxi_driver/widgets/colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {

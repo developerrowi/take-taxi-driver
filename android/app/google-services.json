@@ -9,7 +9,7 @@
         "client_info": {
           "mobilesdk_app_id": "1:478110535642:android:66397f951ba443f0817ae3",
           "android_client_info": {
-            "package_name": "com.example.pocket_taxi"
+            "package_name": "com.example.take_taxi_driver"
           }
         },
         "oauth_client": [

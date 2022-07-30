@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pocket_taxi/supabase/auth-supabase.dart';
+import 'package:take_taxi_driver/supabase/auth-supabase.dart';
 import '../widgets/form.dart';
 // import '../widgets/form.dart';
 

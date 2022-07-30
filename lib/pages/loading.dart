@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_taxi/pages/home.dart';
-import 'package:pocket_taxi/pages/login.dart';
+import 'package:take_taxi_driver/pages/home.dart';
+import 'package:take_taxi_driver/pages/login.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);

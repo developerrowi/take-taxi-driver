@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pocket_taxi/services/auth.service.dart';
-import 'package:pocket_taxi/supabase/driver-location.dart';
+import 'package:take_taxi_driver/services/auth.service.dart';
+import 'package:take_taxi_driver/supabase/driver-location.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:pocket_taxi/services/auth.service.dart';
+import 'package:take_taxi_driver/services/auth.service.dart';
 
 import '../models/driver.dart';
 
