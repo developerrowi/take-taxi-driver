@@ -112,7 +112,7 @@ class _EmailLogin extends State<EmailLogin> {
                   ),
                   child: const Center(
                     child: Text(
-                      'Continue With Email',
+                      'Sign In',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

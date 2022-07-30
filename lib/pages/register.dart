@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../widgets/form.dart';
 
 import '../firebase/firebase.dart';
 
@@ -40,7 +41,88 @@ class _RegisterState extends State<Register> {
               ),
             ),
             const SizedBox(height: 50),
-            //email textfield
+            //First Name textfield
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'First Name',
+                  )),
+                ),
+              ),
+            ),
+
+            //Last Name textfield
+            const SizedBox(height: 15),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Last Name',
+                  )),
+                ),
+              ),
+            ),
+
+            //Phone Number textfield
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Phone Number',
+                  )),
+                ),
+              ),
+            ),
+
+            //License textfield
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'ID/License Number',
+                  )),
+                ),
+              ),
+            ),
+
+            //Username textfield
+            const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
@@ -60,27 +142,7 @@ class _RegisterState extends State<Register> {
               ),
             ),
 
-            // //password textfield
-            // const SizedBox(height: 15),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            //   child: Container(
-            //     decoration: BoxDecoration(
-            //         color: Colors.grey[200],
-            //         border: Border.all(color: Colors.white),
-            //         borderRadius: BorderRadius.circular(25)),
-            //     child: const Padding(
-            //       padding: EdgeInsets.only(left: 20.0),
-            //       child: TextField(
-            //           decoration: InputDecoration(
-            //         border: InputBorder.none,
-            //         hintText: 'Phone Number',
-            //       )),
-            //     ),
-            //   ),
-            // ),
-
-            //password textfield
+            //password textfields
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -92,7 +154,6 @@ class _RegisterState extends State<Register> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
-                      controller: password,
                       obscureText: true,
                       decoration: InputDecoration(
                         border: InputBorder.none,

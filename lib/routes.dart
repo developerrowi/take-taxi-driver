@@ -23,17 +23,17 @@ class RouteGenerator {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => Loading());
-      case '/login':
-        return MaterialPageRoute(builder: (_) => Login());
       case '/email-login':
         return MaterialPageRoute(builder: (_) => EmailLogin());
+      // case '/email-login':
+      //   return MaterialPageRoute(builder: (_) => EmailLogin());
       case '/register':
         return MaterialPageRoute(builder: (_) => Register());
       case '/forgot':
         return MaterialPageRoute(builder: (_) => Forgot());
       case '/home':
         if (!_authService.isLoggedIn) {
-          return MaterialPageRoute(builder: (_) => Login());
+          return MaterialPageRoute(builder: (_) => EmailLogin());
         }
         return MaterialPageRoute(builder: (_) => Home());
 
