@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="facebook_app_id">1275251296552773</string>
+    <string name="fb_login_protocol_scheme">fb1275251296552773</string>
+    <string name="facebook_client_token">f7f342e6286b75e03fceaf9d991e0673</string>
+
+    <string name="app_name">"com.example.pocket_taxi"</string>
+</resources>

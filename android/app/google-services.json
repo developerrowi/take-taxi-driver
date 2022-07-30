@@ -1,0 +1,46 @@
+{
+    "project_info": {
+      "project_number": "478110535642",
+      "project_id": "taptaxi-95635",
+      "storage_bucket": "taptaxi-95635.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:478110535642:android:66397f951ba443f0817ae3",
+          "android_client_info": {
+            "package_name": "com.example.pocket_taxi"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "478110535642-9mo52jtlvno9v0kl9bgev16feop8e4qv.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyA97u8JpScvaqWsJLc5Joe9dQgVe-FxKWs"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "478110535642-9mo52jtlvno9v0kl9bgev16feop8e4qv.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "478110535642-9qggcf69e6maq3csc6m9hv01tb4bs92b.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.example.pocketTaxi"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
