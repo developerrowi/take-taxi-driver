@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pocket_taxi/supabase/auth-supabase.dart';
 import '../widgets/form.dart';
+// import '../widgets/form.dart';
 
 import '../firebase/firebase.dart';
 
@@ -14,10 +15,16 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  TextEditingController firstName = new TextEditingController();
+  TextEditingController lastName = new TextEditingController();
+  TextEditingController phoneNumber = new TextEditingController();
+  TextEditingController licenseNumber = new TextEditingController();
   TextEditingController emailController = new TextEditingController();
 
   TextEditingController password = new TextEditingController();
   var supabase = SupabaseInstance();
+  TextEditingController passwordController = new TextEditingController();
+  var firebase = FireBaseInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +60,11 @@ class _RegisterState extends State<Register> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
+                      controller: firstName,
                       decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'First Name',
-                  )),
+                        border: InputBorder.none,
+                        hintText: 'First Name',
+                      )),
                 ),
               ),
             ),
@@ -74,10 +82,11 @@ class _RegisterState extends State<Register> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
+                      controller: lastName,
                       decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Last Name',
-                  )),
+                        border: InputBorder.none,
+                        hintText: 'Last Name',
+                      )),
                 ),
               ),
             ),
@@ -94,10 +103,11 @@ class _RegisterState extends State<Register> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
+                      controller: phoneNumber,
                       decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Phone Number',
-                  )),
+                        border: InputBorder.none,
+                        hintText: 'Phone Number',
+                      )),
                 ),
               ),
             ),
@@ -114,15 +124,16 @@ class _RegisterState extends State<Register> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
+                      controller: licenseNumber,
                       decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'ID/License Number',
-                  )),
+                        border: InputBorder.none,
+                        hintText: 'ID/License Number',
+                      )),
                 ),
               ),
             ),
 
-            //Username textfield
+            //Username Email textfield
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -155,6 +166,7 @@ class _RegisterState extends State<Register> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -167,10 +179,16 @@ class _RegisterState extends State<Register> {
             //register button
             const SizedBox(height: 20),
             InkWell(
-              onTap: () {
-                supabase.emailRegisterToSupabase(
-                    this.emailController.text, this.password.text);
+              onTap: () async {
+                await supabase.emailRegisterToSupabase(
+                    this.emailController.text,
+                    this.passwordController.text,
+                    this.firstName.text,
+                    this.lastName.text,
+                    this.phoneNumber.text,
+                    this.licenseNumber.text);
                 print('Register Supabase');
+                Navigator.of(context).pushNamed('/email-login');
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),

@@ -27,6 +27,8 @@ class SupabaseInstance {
       print(session);
       // handle auth state change
     });
+
+    this.logoutSupabase();
   }
 
   emailSignInToSupabase(String email, String password) async {
@@ -43,12 +45,29 @@ class SupabaseInstance {
     } catch (e) {}
   }
 
-  emailRegisterToSupabase(String email, String password) async {
+  emailRegisterToSupabase(String email, String password, String firstName,
+      String lastName, String phoneNumber, String licenseNumber) async {
     try {
       final res = await supabase.auth.signUp(email, password);
+      final updates = {
+        'email': email,
+        'first_name': firstName,
+        'last_name': lastName,
+        'license_number': licenseNumber
+      };
 
-      final user = res.data?.user;
-      final error = res.error;
+      final driverDetails =
+          await supabase.from('driver_details').insert(updates).execute();
+      final error = driverDetails.error;
+      if (error != null) {
+        print(error.message);
+      } else {
+        print('Successfully Registered!');
+      }
+      print(driverDetails);
+
+      // final user = res.data?.user;
+      // final error = res.error;
     } catch (e) {
       print(e);
     }

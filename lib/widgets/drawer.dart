@@ -31,7 +31,7 @@ Widget _logout(
     selected: isSelected,
     onTap: () {
       supabase.logoutSupabase();
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, '/email-login');
     },
   );
 }
