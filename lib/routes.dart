@@ -24,7 +24,7 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (_) => Loading());
       case '/login':
-        return MaterialPageRoute(builder: (_) => Login());
+        return MaterialPageRoute(builder: (_) => EmailLogin());
       case '/email-login':
         return MaterialPageRoute(builder: (_) => EmailLogin());
       case '/register':

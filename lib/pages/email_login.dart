@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pocket_taxi/supabase/auth-supabase.dart';
 import '../firebase/firebase.dart';
 
 class EmailLogin extends StatefulWidget {
@@ -14,7 +15,7 @@ class _EmailLogin extends State<EmailLogin> {
   TextEditingController emailController = new TextEditingController();
 
   TextEditingController password = new TextEditingController();
-  var firebase = FireBaseInstance();
+  var supabase = SupabaseInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +92,7 @@ class _EmailLogin extends State<EmailLogin> {
             InkWell(
               onTap: () async {
                 try {
-                  await firebase.emailSignInToFirebase(
+                  await supabase.emailSignInToSupabase(
                       this.emailController.text, this.password.text);
                   Navigator.of(context).pushNamed(
                     '/home',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pocket_taxi/supabase/auth-supabase.dart';
 
 import '../firebase/firebase.dart';
 
@@ -15,7 +16,7 @@ class _RegisterState extends State<Register> {
   TextEditingController emailController = new TextEditingController();
 
   TextEditingController password = new TextEditingController();
-  var firebase = FireBaseInstance();
+  var supabase = SupabaseInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +107,9 @@ class _RegisterState extends State<Register> {
             const SizedBox(height: 20),
             InkWell(
               onTap: () {
-                firebase.emailRegisterToFireBase(
+                supabase.emailRegisterToSupabase(
                     this.emailController.text, this.password.text);
-                print('Register Firebase');
+                print('Register Supabase');
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),

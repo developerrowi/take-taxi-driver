@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pocket_taxi/firebase/firebase.dart';
+import 'package:pocket_taxi/supabase/auth-supabase.dart';
 
-var firebase = new FireBaseInstance();
+var supabase = new SupabaseInstance();
 
 Widget _buildMenuItem(
     BuildContext context, Widget title, String routeName, String currentRoute) {
@@ -29,7 +30,7 @@ Widget _logout(
     title: title,
     selected: isSelected,
     onTap: () {
-      firebase.logoutFirebase();
+      supabase.logoutSupabase();
       Navigator.pushReplacementNamed(context, '/login');
     },
   );
