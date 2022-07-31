@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import '../widgets/form.dart';
+import '../widgets/toast.dart';
 
 import '../firebase/firebase.dart';
 
@@ -159,6 +160,7 @@ class _RegisterState extends State<Register> {
               onTap: () async {
                 await firebase.emailRegisterToFireBase(this.emailController.text, this.passwordController.text);
                 print('Register Firebase');
+                ToastMessage.showToastMessage();
                 Navigator.of(context).pushNamed('/email-login');
               },
               child: Padding(
