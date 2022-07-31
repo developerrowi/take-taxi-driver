@@ -45,23 +45,17 @@ class _LoginState extends State<Login> {
               ),
             ),
 
-            // SocialButtons.socialButtonRect('Login with Facebook', facebookColor,
-            //     FontAwesomeIcons.facebookF, onTap: () async {
-            //   await firebase.facebookSignInToFirebase();
-            //   Navigator.of(context)
-            //       .pushNamed('/home', arguments: 'Hello from the first page!');
-            // }),
+            SocialButtons.socialButtonRect('Login with Facebook', facebookColor, FontAwesomeIcons.facebookF, onTap: () async {
+              await firebase.facebookSignInToFirebase();
+              Navigator.of(context).pushNamed('/home', arguments: 'Hello from the first page!');
+            }),
 
-            // SocialButtons.socialButtonRect(
-            //     'Login with google', googleColor, FontAwesomeIcons.googlePlusG,
-            //     onTap: () async {
-            //   await firebase.googleSignInToFirebase();
-            //   Navigator.of(context)
-            //       .pushNamed('/home', arguments: 'Hello from the first page!');
-            // }),
+            SocialButtons.socialButtonRect('Login with google', googleColor, FontAwesomeIcons.googlePlusG, onTap: () async {
+              await firebase.googleSignInToFirebase();
+              Navigator.of(context).pushNamed('/home', arguments: 'Hello from the first page!');
+            }),
 
-            SocialButtons.socialNoIcon('Sign In', blackNormal, null,
-                onTap: () async {
+            SocialButtons.socialNoIcon('Sign In', blackNormal, null, onTap: () async {
               Navigator.of(context).pushNamed('/email-login');
             }),
           ]),
