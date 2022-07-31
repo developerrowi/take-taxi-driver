@@ -12,7 +12,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 LocationService locationService = LocationService();
-
 UserLocationService userLocationService = UserLocationService();
 
 class Home extends StatefulWidget {
@@ -23,7 +22,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   var firebase = FireBaseInstance();
   late Timer _timer;
-  var selectedEmail = 'todas@gmail.com';
 
   LocationService _locationService = LocationService();
 
@@ -73,9 +71,11 @@ class _HomeState extends State<Home> {
   }
 
   addNewMarker() {
+    var selectedEmail = 'todas@gmail.com';
+
     this._timer = Timer.periodic(new Duration(milliseconds: 2500), (timer) {
       this.fetchLocationInterval();
-      this.fetchUserLocation(this.selectedEmail);
+      this.fetchUserLocation(selectedEmail);
 
       var x = locationService.currentLocation.latitude;
       var y = locationService.currentLocation.longitude;
@@ -85,6 +85,7 @@ class _HomeState extends State<Home> {
       print(markers[0].builder);
       markers.clear();
 
+      // Driver
       markers.add(Marker(
         point: LatLng(x, y),
         builder: (ctx) => Image.asset(
@@ -95,6 +96,7 @@ class _HomeState extends State<Home> {
         ),
       ));
 
+      // User
       markers.add(Marker(
         point: LatLng(userX, userY),
         builder: (ctx) => Image.asset(
