@@ -1,16 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pocket_taxi/services/location.service.dart';
-import 'package:pocket_taxi/services/directions.service.dart';
+import 'package:take_taxi_driver/services/location.service.dart';
+import 'package:take_taxi_driver/services/directions.service.dart';
 
 import '../firebase/firebase.dart';
+import '../supabase/user-location.dart';
 import '../widgets/drawer.dart';
 
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 LocationService locationService = LocationService();
+
+UserLocationService userLocationService = UserLocationService();
 
 class Home extends StatefulWidget {
   @override
@@ -19,6 +22,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var firebase = FireBaseInstance();
+  late Timer _timer;
+  var selectedEmail = 'todas@gmail.com';
+
+  LocationService _locationService = LocationService();
 
   late final MapController mapController;
   var markers = <Marker>[
@@ -48,19 +55,33 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     mapController = MapController();
+    this.fetchLocationInterval();
     addNewMarker();
   }
 
+  dispose() {
+    this._timer.cancel(); // you need this
+    super.dispose();
+  }
+
+  void fetchLocationInterval() async {
+    await _locationService.getCurrentLocation();
+  }
+
+  void fetchUserLocation(email) async {
+    await userLocationService.getUserLocation(email);
+  }
+
   addNewMarker() {
-    var x = locationService.currentLocation.latitude;
-    var y = locationService.currentLocation.longitude;
-    var latCount = 0.00002;
-    var lonCount = 0.0000002;
+    this._timer = Timer.periodic(new Duration(milliseconds: 2500), (timer) {
+      this.fetchLocationInterval();
+      this.fetchUserLocation(this.selectedEmail);
 
-    Timer _timer = Timer.periodic(new Duration(milliseconds: 1000), (timer) {
-      x = x + latCount;
-      y = y + lonCount;
+      var x = locationService.currentLocation.latitude;
+      var y = locationService.currentLocation.longitude;
 
+      var userX = userLocationService.currentUser.latitude;
+      var userY = userLocationService.currentUser.longitude;
       print(markers[0].builder);
       markers.clear();
 
@@ -73,6 +94,17 @@ class _HomeState extends State<Home> {
           fit: BoxFit.cover,
         ),
       ));
+
+      markers.add(Marker(
+        point: LatLng(userX, userY),
+        builder: (ctx) => Image.asset(
+          'assets/icon/taketaxi-icon-v3.png',
+          height: 1.0,
+          width: 1.0,
+          fit: BoxFit.cover,
+        ),
+      ));
+
       setState(() {});
     });
   }
@@ -107,6 +139,10 @@ class _HomeState extends State<Home> {
                     tileProvider: const NonCachingNetworkTileProvider(),
                   ),
                   MarkerLayerOptions(markers: markers),
+                  PolylineLayerOptions(
+                    polylineCulling: false,
+                    polylines: directions,
+                  ),
                 ],
               ),
             ),

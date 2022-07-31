@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pocket_taxi/firebase/firebase.dart';
+import 'package:take_taxi_driver/firebase/firebase.dart';
+import 'package:take_taxi_driver/supabase/auth-supabase.dart';
 
-var firebase = new FireBaseInstance();
+var supabase = new SupabaseAuthService();
 
 Widget _buildMenuItem(
     BuildContext context, Widget title, String routeName, String currentRoute) {
@@ -29,8 +30,8 @@ Widget _logout(
     title: title,
     selected: isSelected,
     onTap: () {
-      firebase.logoutFirebase();
-      Navigator.pushReplacementNamed(context, '/login');
+      supabase.logoutSupabase();
+      Navigator.pushReplacementNamed(context, '/email-login');
     },
   );
 }

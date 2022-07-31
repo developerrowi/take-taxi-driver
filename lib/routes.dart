@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_taxi/main.dart';
-import 'package:pocket_taxi/pages/email_login.dart';
-import 'package:pocket_taxi/pages/forgotpassword.dart';
-import 'package:pocket_taxi/pages/home.dart';
-import 'package:pocket_taxi/pages/login.dart';
-import 'package:pocket_taxi/pages/loading.dart';
-import 'package:pocket_taxi/pages/register.dart';
-import 'package:pocket_taxi/services/auth.service.dart';
+import 'package:take_taxi_driver/main.dart';
+import 'package:take_taxi_driver/pages/email_login.dart';
+import 'package:take_taxi_driver/pages/forgotpassword.dart';
+import 'package:take_taxi_driver/pages/home.dart';
+import 'package:take_taxi_driver/pages/login.dart';
+import 'package:take_taxi_driver/pages/loading.dart';
+import 'package:take_taxi_driver/pages/register.dart';
+import 'package:take_taxi_driver/services/auth.service.dart';
 
 class RouteGenerator {
   late Object firebase;

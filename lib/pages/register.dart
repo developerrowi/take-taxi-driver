@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:take_taxi_driver/supabase/auth-supabase.dart';
+import '../widgets/form.dart';
 // import '../widgets/form.dart';
 import '../widgets/toast.dart';
 
@@ -19,6 +21,9 @@ class _RegisterState extends State<Register> {
   TextEditingController phoneNumber = new TextEditingController();
   TextEditingController licenseNumber = new TextEditingController();
   TextEditingController emailController = new TextEditingController();
+
+  TextEditingController password = new TextEditingController();
+  var supabase = SupabaseAuthService();
   TextEditingController passwordController = new TextEditingController();
   var firebase = FireBaseInstance();
 
@@ -49,7 +54,10 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
@@ -68,7 +76,10 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
@@ -86,7 +97,10 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
@@ -104,7 +118,10 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
@@ -122,7 +139,10 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
@@ -140,7 +160,10 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: TextField(
@@ -158,9 +181,20 @@ class _RegisterState extends State<Register> {
             const SizedBox(height: 20),
             InkWell(
               onTap: () async {
+<<<<<<< HEAD
                 await firebase.emailRegisterToFireBase(this.emailController.text, this.passwordController.text);
                 print('Register Firebase');
                 ToastMessage.showToastMessage();
+=======
+                await supabase.emailRegisterToSupabase(
+                    this.emailController.text,
+                    this.passwordController.text,
+                    this.firstName.text,
+                    this.lastName.text,
+                    this.phoneNumber.text,
+                    this.licenseNumber.text);
+                print('Register Supabase');
+>>>>>>> 91eae2b0ca5d74553404b237c903db9297c8bda2
                 Navigator.of(context).pushNamed('/email-login');
               },
               child: Padding(

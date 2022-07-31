@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pocket_taxi">
+    package="com.example.take_taxi_driver">
    <application
-        android:label="pocket_taxi"
+        android:label="take_taxi_driver"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
