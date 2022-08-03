@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:take_taxi_driver/services/location.service.dart';
 import 'package:take_taxi_driver/services/directions.service.dart';
+import 'package:take_taxi_driver/widgets/home-card.dart';
 
 import '../firebase/firebase.dart';
 import '../supabase/user-location.dart';
@@ -10,6 +11,8 @@ import '../widgets/drawer.dart';
 
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+
+import '../widgets/main-map.dart';
 
 LocationService locationService = LocationService();
 UserLocationService userLocationService = UserLocationService();
@@ -89,7 +92,7 @@ class _HomeState extends State<Home> {
       markers.add(Marker(
         point: LatLng(x, y),
         builder: (ctx) => Image.asset(
-          'assets/icon/taketaxi-icon-v3.png',
+          'assets/icon/driver-icon.png',
           height: 1.0,
           width: 1.0,
           fit: BoxFit.cover,
@@ -100,7 +103,7 @@ class _HomeState extends State<Home> {
       markers.add(Marker(
         point: LatLng(userX, userY),
         builder: (ctx) => Image.asset(
-          'assets/icon/taketaxi-icon-v3.png',
+          'assets/icon/user-icon.png',
           height: 1.0,
           width: 1.0,
           fit: BoxFit.cover,
@@ -113,41 +116,27 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final bookingList = <Widget>[];
+    for (var i = 0; i < 10; i++) {
+      bookingList.add(HomeCard.homeCard());
+    }
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),
       drawer: buildDrawer(context, '/home'),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(1.0),
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: Text('This is a map that is showing (51.5, -0.9).'),
+            SizedBox(
+              height: 450.0,
+              child: MainMap.mainMap(markers, directions),
             ),
             Flexible(
-              child: FlutterMap(
-                mapController: mapController,
-                options: MapOptions(
-                    center: LatLng(locationService.currentLocation.latitude,
-                        locationService.currentLocation.longitude),
-                    zoom: 18.0,
-                    maxZoom: 18.0),
-                layers: [
-                  TileLayerOptions(
-                    urlTemplate:
-                        // 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                    subdomains: ['a', 'b', 'c'],
-                    tileProvider: const NonCachingNetworkTileProvider(),
-                  ),
-                  MarkerLayerOptions(markers: markers),
-                  PolylineLayerOptions(
-                    polylineCulling: false,
-                    polylines: directions,
-                  ),
-                ],
-              ),
-            ),
+              child: ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  children: bookingList),
+            )
           ],
         ),
       ),

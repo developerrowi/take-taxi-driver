@@ -181,11 +181,6 @@ class _RegisterState extends State<Register> {
             const SizedBox(height: 20),
             InkWell(
               onTap: () async {
-<<<<<<< HEAD
-                await firebase.emailRegisterToFireBase(this.emailController.text, this.passwordController.text);
-                print('Register Firebase');
-                ToastMessage.showToastMessage();
-=======
                 await supabase.emailRegisterToSupabase(
                     this.emailController.text,
                     this.passwordController.text,
@@ -194,7 +189,7 @@ class _RegisterState extends State<Register> {
                     this.phoneNumber.text,
                     this.licenseNumber.text);
                 print('Register Supabase');
->>>>>>> 91eae2b0ca5d74553404b237c903db9297c8bda2
+                ToastMessage.showToastMessage();
                 Navigator.of(context).pushNamed('/email-login');
               },
               child: Padding(

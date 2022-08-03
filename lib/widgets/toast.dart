@@ -20,15 +20,6 @@ import 'package:flutter/material.dart';
 //   }
 // }
 
-@override
-void initState() {
-  super.initState();
-  fToast = FToast();
-  fToast.init(context);
-}
-
-FToast fToast;
-
 Widget toast = Container(
   padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
   decoration: BoxDecoration(
@@ -40,6 +31,12 @@ Widget toast = Container(
 
 class ToastMessage {
   static showToastMessage() {
-    Fluttertoast.showToast(msg: "Success", toastLength: Toast.LENGTH_LONG, fontSize: 14, textColor: Colors.black, gravity: ToastGravity.CENTER, backgroundColor: Colors.white);
+    Fluttertoast.showToast(
+        msg: "Success",
+        toastLength: Toast.LENGTH_LONG,
+        fontSize: 14,
+        textColor: Colors.black,
+        gravity: ToastGravity.CENTER,
+        backgroundColor: Colors.white);
   }
 }
