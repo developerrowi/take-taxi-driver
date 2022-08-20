@@ -124,7 +124,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final bookingList = <Widget>[];
     for (var i = 0; i < bookings.length; i++) {
-      bookingList.add(HomeCard.homeCard(bookings[i]));
+      bookingList.add(HomeCard.homeCard(bookings[i], context));
     }
 
     return Scaffold(

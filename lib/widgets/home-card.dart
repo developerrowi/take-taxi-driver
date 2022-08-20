@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:take_taxi_driver/widgets/colors.dart';
 
 class HomeCard {
-  static Widget homeCard(bookings) {
+  static Widget homeCard(bookings, context) {
+    TextEditingController fare = new TextEditingController();
     return Center(
       child: Card(
         child: Column(
@@ -19,18 +20,38 @@ class HomeCard {
                 children: [Text('Pick-up: Central'), Text('Drop-off: SBMA')],
               ),
               trailing: Container(
-                padding: const EdgeInsets.only(top: 15, bottom: 15, left: 40, right: 40),
+                padding: EdgeInsets.only(top: 5, bottom: 5, left: 40, right: 40),
                 decoration: BoxDecoration(
                   color: yellowNormal,
                   borderRadius: BorderRadius.circular(25),
                 ),
-                child: Text(
-                  'OFFER',
-                  style: TextStyle(
-                    color: blackNormal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
+                child: TextButton(
+                  onPressed: () => {
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: Text(
+                          bookings['first_name'] + ' ' + bookings['last_name'],
+                        ),
+                        content: TextField(
+                          controller: fare,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(hintText: "Offer"),
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            child: Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Ok'),
+                            child: Text('OK'),
+                          ),
+                        ],
+                      ),
+                    )
+                  },
+                  child: Text('OFFER'),
                 ),
               ),
             ),
