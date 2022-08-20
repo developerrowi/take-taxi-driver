@@ -34,8 +34,7 @@ class _HomeState extends State<Home> {
   late final MapController mapController;
   var markers = <Marker>[
     Marker(
-      point: LatLng(locationService.currentLocation.latitude,
-          locationService.currentLocation.longitude),
+      point: LatLng(locationService.currentLocation.latitude, locationService.currentLocation.longitude),
       builder: (ctx) => Image.asset(
         'assets/icon/taketaxi-icon-v3.png',
         height: 1.0,
@@ -136,14 +135,11 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             SizedBox(
-              height: 450.0,
+              height: 400.0,
               child: MainMap.mainMap(markers, directions),
             ),
             Flexible(
-              child: ListView(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  children: bookingList),
+              child: ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: bookingList),
             )
           ],
         ),

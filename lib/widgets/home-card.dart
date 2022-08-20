@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:take_taxi_driver/widgets/colors.dart';
 
 class HomeCard {
-  static Widget homeCard() {
+  static Widget homeCard(bookings) {
     return Center(
       child: Card(
         child: Column(
           children: <Widget>[
             ListTile(
               leading: CircleAvatar(
-                backgroundImage: AssetImage(
-                    'assets/icon/user-icon.png'), // no matter how big it is, it won't overflow
+                backgroundImage: AssetImage('assets/icon/user-icon.png'),
               ),
-              title: Text('Customer Name'),
+              title: Text(
+                bookings['first_name'] + ' ' + bookings['last_name'],
+              ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [Text('Pick-up: Central'), Text('Drop-off: SBMA')],
               ),
               trailing: Container(
-                padding: const EdgeInsets.only(
-                    top: 15, bottom: 15, left: 40, right: 40),
+                padding: const EdgeInsets.only(top: 15, bottom: 15, left: 40, right: 40),
                 decoration: BoxDecoration(
                   color: yellowNormal,
                   borderRadius: BorderRadius.circular(25),
@@ -27,7 +27,7 @@ class HomeCard {
                 child: Text(
                   'OFFER',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: blackNormal,
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
