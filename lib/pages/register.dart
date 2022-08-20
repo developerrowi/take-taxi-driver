@@ -235,6 +235,7 @@ class _RegisterState extends State<Register> {
                     this.licenseNumber.text,
                     this.bodyNumber.text,
                     int.parse(this.seater.text));
+
                 print('Register Supabase');
                 ToastMessage.showToastMessage();
                 Navigator.of(context).pushNamed('/email-login');
