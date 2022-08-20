@@ -48,7 +48,7 @@ class HomeCard {
                           TextButton(
                             onPressed: () async {
                               bookingService.createOffer(
-                                  bookings['booking_id'], fare.text);
+                                  bookings['id'], fare.text);
                               Navigator.pop(context, 'Ok');
                             },
                             child: Text('OK'),
