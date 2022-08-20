@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:take_taxi_driver/pages/home.dart';
 import 'package:take_taxi_driver/widgets/colors.dart';
 
 class HomeCard {
@@ -20,7 +21,8 @@ class HomeCard {
                 children: [Text('Pick-up: Central'), Text('Drop-off: SBMA')],
               ),
               trailing: Container(
-                padding: EdgeInsets.only(top: 5, bottom: 5, left: 40, right: 40),
+                padding:
+                    EdgeInsets.only(top: 5, bottom: 5, left: 40, right: 40),
                 decoration: BoxDecoration(
                   color: yellowNormal,
                   borderRadius: BorderRadius.circular(25),
@@ -44,7 +46,11 @@ class HomeCard {
                             child: Text('Cancel'),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.pop(context, 'Ok'),
+                            onPressed: () async {
+                              bookingService.createOffer(
+                                  bookings['booking_id'], fare.text);
+                              Navigator.pop(context, 'Ok');
+                            },
                             child: Text('OK'),
                           ),
                         ],

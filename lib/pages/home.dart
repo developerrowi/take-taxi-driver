@@ -34,7 +34,8 @@ class _HomeState extends State<Home> {
   late final MapController mapController;
   var markers = <Marker>[
     Marker(
-      point: LatLng(locationService.currentLocation.latitude, locationService.currentLocation.longitude),
+      point: LatLng(locationService.currentLocation.latitude,
+          locationService.currentLocation.longitude),
       builder: (ctx) => Image.asset(
         'assets/icon/taketaxi-icon-v3.png',
         height: 1.0,
@@ -82,42 +83,47 @@ class _HomeState extends State<Home> {
 
   addNewMarker() async {
     var selectedEmail = 'todas@gmail.com';
-    bookings = await this.fetchBooking();
+    await markerLogic();
     this.fetchLocationInterval();
-    this.fetchUserLocation(selectedEmail);
-    this._timer = Timer.periodic(new Duration(milliseconds: 2500), (timer) {
-      var x = locationService.currentLocation.latitude;
-      var y = locationService.currentLocation.longitude;
-
-      var userX = userLocationService.currentUser.latitude;
-      var userY = userLocationService.currentUser.longitude;
-      print(markers[0].builder);
-      markers.clear();
-
-      // Driver
-      markers.add(Marker(
-        point: LatLng(x, y),
-        builder: (ctx) => Image.asset(
-          'assets/icon/driver-icon.png',
-          height: 1.0,
-          width: 1.0,
-          fit: BoxFit.cover,
-        ),
-      ));
-
-      // User
-      markers.add(Marker(
-        point: LatLng(userX, userY),
-        builder: (ctx) => Image.asset(
-          'assets/icon/user-icon.png',
-          height: 1.0,
-          width: 1.0,
-          fit: BoxFit.cover,
-        ),
-      ));
-
-      setState(() {});
+    // this.fetchUserLocation(selectedEmail);
+    _timer = Timer.periodic(new Duration(milliseconds: 2500), (timer) async {
+      await markerLogic();
     });
+  }
+
+  markerLogic() async {
+    bookings = await this.fetchBooking();
+    var x = locationService.currentLocation.latitude;
+    var y = locationService.currentLocation.longitude;
+
+    // var userX = userLocationService.currentUser.latitude;
+    // var userY = userLocationService.currentUser.longitude;
+    print(markers[0].builder);
+    markers.clear();
+
+    // Driver
+    markers.add(Marker(
+      point: LatLng(x, y),
+      builder: (ctx) => Image.asset(
+        'assets/icon/driver-icon.png',
+        height: 1.0,
+        width: 1.0,
+        fit: BoxFit.cover,
+      ),
+    ));
+
+    // User
+    // markers.add(Marker(
+    //   point: LatLng(userX, userY),
+    //   builder: (ctx) => Image.asset(
+    //     'assets/icon/user-icon.png',
+    //     height: 1.0,
+    //     width: 1.0,
+    //     fit: BoxFit.cover,
+    //   ),
+    // ));
+
+    setState(() {});
   }
 
   @override
@@ -139,7 +145,10 @@ class _HomeState extends State<Home> {
               child: MainMap.mainMap(markers, directions),
             ),
             Flexible(
-              child: ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: bookingList),
+              child: ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  children: bookingList),
             )
           ],
         ),
