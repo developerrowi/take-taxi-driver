@@ -31,6 +31,7 @@ class SupabaseAuthService {
     '',
     '',
     '',
+    '',
   );
 
   Driver get currentUser => _currentUser;
@@ -95,15 +96,22 @@ class SupabaseAuthService {
           data['first_name'] +
           data['last_name'] +
           '');
-      final currentDriver = Driver(email, '', data['license_number'],
-          data['first_name'], data['last_name'], '');
+      final currentDriver = Driver(data['id'], email, '',
+          data['license_number'], data['first_name'], data['last_name'], '');
       this.setUser(currentDriver);
       print(currentUser);
     } catch (e) {}
   }
 
-  emailRegisterToSupabase(String email, String password, String firstName,
-      String lastName, String phoneNumber, String licenseNumber) async {
+  emailRegisterToSupabase(
+      String email,
+      String password,
+      String firstName,
+      String lastName,
+      String phoneNumber,
+      String licenseNumber,
+      String bodyNumber,
+      int seater) async {
     try {
       final res = await supabase.auth.signUp(email, password);
       final updates = {
@@ -111,7 +119,9 @@ class SupabaseAuthService {
         'first_name': firstName,
         'last_name': lastName,
         'license_number': licenseNumber,
-        'phone_number': phoneNumber
+        'phone_number': phoneNumber,
+        'body_number': bodyNumber,
+        'seater': seater
       };
 
       final driverDetails =
@@ -125,8 +135,8 @@ class SupabaseAuthService {
       } else {
         print('Successfully Registered!');
 
-        Driver currentDriver =
-            Driver(email, phoneNumber, licenseNumber, firstName, lastName, '');
+        Driver currentDriver = Driver(
+            '', email, phoneNumber, licenseNumber, firstName, lastName, '');
 
         this.setUser(currentDriver);
       }

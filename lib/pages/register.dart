@@ -21,6 +21,8 @@ class _RegisterState extends State<Register> {
   TextEditingController phoneNumber = new TextEditingController();
   TextEditingController licenseNumber = new TextEditingController();
   TextEditingController emailController = new TextEditingController();
+  TextEditingController bodyNumber = new TextEditingController();
+  TextEditingController seater = new TextEditingController();
 
   TextEditingController password = new TextEditingController();
   var supabase = SupabaseAuthService();
@@ -71,7 +73,7 @@ class _RegisterState extends State<Register> {
             ),
 
             //Last Name textfield
-            const SizedBox(height: 15),
+            const SizedBox(height: 12),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -93,7 +95,7 @@ class _RegisterState extends State<Register> {
             ),
 
             //Phone Number textfield
-            const SizedBox(height: 15),
+            const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
@@ -114,7 +116,7 @@ class _RegisterState extends State<Register> {
             ),
 
             //License textfield
-            const SizedBox(height: 15),
+            const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
@@ -134,8 +136,51 @@ class _RegisterState extends State<Register> {
               ),
             ),
 
+            //License textfield
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                      controller: bodyNumber,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Body Number',
+                      )),
+                ),
+              ),
+            ),
+
+            //License textfield
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: TextField(
+                      controller: seater,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Seater',
+                      )),
+                ),
+              ),
+            ),
+
             //Username Email textfield
-            const SizedBox(height: 15),
+            const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
@@ -156,7 +201,7 @@ class _RegisterState extends State<Register> {
             ),
 
             //password textfields
-            const SizedBox(height: 15),
+            const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: Container(
@@ -187,7 +232,9 @@ class _RegisterState extends State<Register> {
                     this.firstName.text,
                     this.lastName.text,
                     this.phoneNumber.text,
-                    this.licenseNumber.text);
+                    this.licenseNumber.text,
+                    this.bodyNumber.text,
+                    int.parse(this.seater.text));
                 print('Register Supabase');
                 ToastMessage.showToastMessage();
                 Navigator.of(context).pushNamed('/email-login');
@@ -213,7 +260,7 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 12),
           ]),
         ),
       ),

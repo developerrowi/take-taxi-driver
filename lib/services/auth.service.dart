@@ -13,7 +13,7 @@ class AuthService {
 
   bool _isLoggedIn = false;
   bool _isEmailVerified = false;
-  Driver _driverInstance = Driver('', '', '', '', '', '');
+  Driver _driverInstance = Driver('', '', '', '', '', '', '');
 
   bool get isLoggedIn => _isLoggedIn;
   bool get isEmailVerified => _isEmailVerified;
