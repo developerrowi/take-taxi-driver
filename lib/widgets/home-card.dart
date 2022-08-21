@@ -21,43 +21,64 @@ class HomeCard {
                 children: [Text('Pick-up: Central'), Text('Drop-off: SBMA')],
               ),
               trailing: Container(
-                padding:
-                    EdgeInsets.only(top: 5, bottom: 5, left: 40, right: 40),
+                padding: EdgeInsets.only(top: 0, bottom: 0, left: 40, right: 40),
                 decoration: BoxDecoration(
                   color: yellowNormal,
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: TextButton(
                   onPressed: () => {
-                    showDialog<String>(
+                    showDialog(
                       context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: Text(
-                          bookings['first_name'] + ' ' + bookings['last_name'],
-                        ),
-                        content: TextField(
-                          controller: fare,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(hintText: "Offer"),
-                        ),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'Cancel'),
-                            child: Text('Cancel'),
+                      builder: (BuildContext context) {
+                        return Dialog(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)), //this right here
+                          child: Container(
+                            height: 600,
+                            width: 400,
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CircleAvatar(
+                                    backgroundImage: AssetImage('assets/icon/user-icon.png'),
+                                  ),
+                                  Text(
+                                    bookings['first_name'] + ' ' + bookings['last_name'],
+                                  ),
+                                  TextField(
+                                    controller: fare,
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(hintText: "Offer"),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [Text('Pick-up: Central'), Text('Drop-off: SBMA')],
+                                  ),
+                                  SizedBox(
+                                    child: RaisedButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Offer",
+                                        style: TextStyle(color: blackNormal),
+                                      ),
+                                      color: yellowNormal,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                          TextButton(
-                            onPressed: () async {
-                              bookingService.createOffer(
-                                  bookings['id'], fare.text);
-                              Navigator.pop(context, 'Ok');
-                            },
-                            child: Text('OK'),
-                          ),
-                        ],
-                      ),
-                    )
+                        );
+                      },
+                    ),
                   },
-                  child: Text('OFFER'),
+                  child: Text(
+                    'OFFER',
+                    style: TextStyle(color: blackNormal),
+                  ),
                 ),
               ),
             ),
