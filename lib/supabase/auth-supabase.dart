@@ -9,7 +9,7 @@ import 'package:take_taxi_driver/services/auth.service.dart';
 
 import '../models/driver.dart';
 
-final supabase = Supabase.instance.client;
+var supabase = Supabase.instance.client;
 DriverLocationService driverLocationService = DriverLocationService();
 AuthService authService = AuthService();
 
@@ -44,11 +44,6 @@ class SupabaseAuthService {
   }
 
   void initializeSupabase() async {
-    await Supabase.initialize(
-        url: 'https://jtdgwvhymxpzxnlhzaoh.supabase.co',
-        anonKey:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0ZGd3dmh5bXhwenhubGh6YW9oIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4OTg0MjYsImV4cCI6MTk3MzQ3NDQyNn0.I0wNui0Do171HTwDnDlncubWblUibox3dcdifP41TGc');
-
     final subscription = supabase.auth.onAuthStateChange((event, session) {
       if (session == null) {
         print('User is currently signed out!');
@@ -91,7 +86,8 @@ class SupabaseAuthService {
       print('This is all users email' + data['email']);
       ;
 
-      print(email +
+      print(data['id'] +
+          email +
           data['license_number'] +
           data['first_name'] +
           data['last_name'] +

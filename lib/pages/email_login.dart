@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:take_taxi_driver/supabase/auth-supabase.dart';
-import '../firebase/firebase.dart';
 
 class EmailLogin extends StatefulWidget {
   const EmailLogin({Key? key}) : super(key: key);

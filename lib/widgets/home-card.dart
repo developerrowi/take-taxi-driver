@@ -3,7 +3,7 @@ import 'package:take_taxi_driver/pages/home.dart';
 import 'package:take_taxi_driver/widgets/colors.dart';
 
 class HomeCard {
-  static Widget homeCard(bookings, context) {
+  static Widget homeCard(bookings, context, offerEnable) {
     TextEditingController fare = new TextEditingController();
     return Center(
       child: Card(
@@ -57,13 +57,19 @@ class HomeCard {
                       ),
                     )
                   },
-                  child: Text('OFFER'),
+                  child: offerEnable ? Text('OFFER') : Text('Pending'),
                 ),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  static Widget offerCard(bookings) {
+    return Center(
+      child: Text('Fare Offered: ' + bookings['fare'].toString()),
     );
   }
 }

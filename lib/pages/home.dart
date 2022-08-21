@@ -6,7 +6,6 @@ import 'package:take_taxi_driver/services/directions.service.dart';
 import 'package:take_taxi_driver/supabase/booking.dart';
 import 'package:take_taxi_driver/widgets/home-card.dart';
 
-import '../firebase/firebase.dart';
 import '../supabase/user-location.dart';
 import '../widgets/drawer.dart';
 
@@ -25,8 +24,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var firebase = FireBaseInstance();
   var bookings = [];
+  var offers = [];
+
   late Timer _timer;
 
   LocationService _locationService = LocationService();
@@ -81,18 +81,24 @@ class _HomeState extends State<Home> {
     return data;
   }
 
+  fetchOffers() async {
+    var data = await bookingService.getOffersByDriver();
+    return data;
+  }
+
   addNewMarker() async {
     var selectedEmail = 'todas@gmail.com';
     await markerLogic();
     this.fetchLocationInterval();
     // this.fetchUserLocation(selectedEmail);
-    _timer = Timer.periodic(new Duration(milliseconds: 2500), (timer) async {
+    _timer = Timer.periodic(new Duration(milliseconds: 100000), (timer) async {
       await markerLogic();
     });
   }
 
   markerLogic() async {
     bookings = await this.fetchBooking();
+    offers = await this.fetchOffers();
     var x = locationService.currentLocation.latitude;
     var y = locationService.currentLocation.longitude;
 
@@ -128,9 +134,18 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final bookingList = <Widget>[];
+    List<Widget> cardWidgets = [];
+
+    for (var i = 0; i < offers.length; i++) {
+      print(offers[i]);
+      cardWidgets.add(HomeCard.offerCard(offers[i]));
+    }
+
     for (var i = 0; i < bookings.length; i++) {
-      bookingList.add(HomeCard.homeCard(bookings[i], context));
+      if (offers.isEmpty)
+        cardWidgets.add(HomeCard.homeCard(bookings[i], context, true));
+      else
+        cardWidgets.add(HomeCard.homeCard(bookings[i], context, false));
     }
 
     return Scaffold(
@@ -148,7 +163,7 @@ class _HomeState extends State<Home> {
               child: ListView(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  children: bookingList),
+                  children: cardWidgets),
             )
           ],
         ),

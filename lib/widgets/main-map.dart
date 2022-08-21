@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:take_taxi_driver/services/location.service.dart';
 import 'package:take_taxi_driver/services/directions.service.dart';
 
-import '../firebase/firebase.dart';
 import '../supabase/user-location.dart';
 import '../widgets/drawer.dart';
 
@@ -13,7 +12,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 late final MapController mapController = MapController();
-var firebase = FireBaseInstance();
+
 late Timer _timer;
 
 LocationService locationService = LocationService();
