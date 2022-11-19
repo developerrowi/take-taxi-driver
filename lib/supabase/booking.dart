@@ -34,8 +34,6 @@ class BookingService {
       if (error != null) {
         print(error.message);
       } else {}
-      print("this is booking");
-      print(res.data);
       return res.data;
     } catch (e) {
       print(e);

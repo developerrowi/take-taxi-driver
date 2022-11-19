@@ -38,7 +38,7 @@ class _EmailLogin extends State<EmailLogin> {
             ),
             const SizedBox(height: 10),
             const Text(
-              'Book Your Taxi',
+              'Driver App',
               style: TextStyle(
                 fontSize: 18,
               ),
