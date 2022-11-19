@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
   }
 
   dispose() {
-    this._timer.cancel(); // you need this
+    _timer.cancel(); // you need this
     super.dispose();
   }
 
@@ -157,7 +157,7 @@ class _HomeState extends State<Home> {
           children: [
             SizedBox(
               height: 400.0,
-              child: MainMap.mainMap(markers, directions),
+              child: MainMap.mainMap(markers, directions, mapController),
             ),
             Flexible(
               child: ListView(
