@@ -11,18 +11,16 @@ import '../widgets/drawer.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-late final MapController mapController = MapController();
-
 late Timer _timer;
 
 LocationService locationService = LocationService();
 UserLocationService userLocationService = UserLocationService();
 
 class MainMap {
-  static Widget mainMap(markers, directions) {
+  static Widget mainMap(markers, directions, mapControl) {
     return InkWell(
       child: FlutterMap(
-        mapController: mapController,
+        mapController: mapControl,
         options: MapOptions(
             center: LatLng(locationService.currentLocation.latitude,
                 locationService.currentLocation.longitude),
