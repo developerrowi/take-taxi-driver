@@ -98,7 +98,7 @@ class BookingService {
     try {
       final res = await supabaseClient
           .from('offers')
-          .select("*," + "bookings(id)")
+          .select("*," + "bookings(*)")
           .eq('driver_id', supabase.currentUser.driver_id)
           .execute();
 
@@ -106,7 +106,7 @@ class BookingService {
       if (error != null) {
         print(error.message);
       } else {}
-      print("this is booking");
+      print(supabase.currentUser);
       print(res.data);
       return res.data;
     } catch (e) {

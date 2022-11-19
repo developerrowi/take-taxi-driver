@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:take_taxi_driver/supabase/auth-supabase.dart';
-import '../widgets/form.dart';
+import '../widgets/custom_input.dart';
+import '../widgets/custom_button.dart';
+
 // import '../widgets/form.dart';
 import '../widgets/toast.dart';
-
-import '../firebase/firebase.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -27,213 +27,96 @@ class _RegisterState extends State<Register> {
   TextEditingController password = new TextEditingController();
   var supabase = SupabaseAuthService();
   TextEditingController passwordController = new TextEditingController();
-  var firebase = FireBaseInstance();
+  int currentStep = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: SafeArea(
-        child: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            //Title
-            const SizedBox(height: 80),
-            Text(
-              'Register',
-              style: GoogleFonts.bebasNeue(
-                fontSize: 56,
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Register an Account',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(height: 50),
-            //First Name textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                      controller: firstName,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'First Name',
-                      )),
-                ),
-              ),
-            ),
-
-            //Last Name textfield
-            const SizedBox(height: 12),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                      controller: lastName,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Last Name',
-                      )),
-                ),
-              ),
-            ),
-
-            //Phone Number textfield
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                      controller: phoneNumber,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Phone Number',
-                      )),
-                ),
-              ),
-            ),
-
-            //License textfield
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                      controller: licenseNumber,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'ID/License Number',
-                      )),
-                ),
-              ),
-            ),
-
-            //License textfield
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                      controller: bodyNumber,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Body Number',
-                      )),
-                ),
-              ),
-            ),
-
-            //License textfield
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                      controller: seater,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Seater',
-                      )),
-                ),
-              ),
-            ),
-
-            //Username Email textfield
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Email',
-                      )),
-                ),
-              ),
-            ),
-
-            //password textfields
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.grey[200], border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(25)),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Password',
-                      )),
-                ),
-              ),
-            ),
-
-            //register button
-            const SizedBox(height: 20),
-            InkWell(
-              onTap: () async {
-                await supabase.emailRegisterToSupabase(this.emailController.text, this.passwordController.text, this.firstName.text, this.lastName.text, this.phoneNumber.text, this.licenseNumber.text,
-                    this.bodyNumber.text, int.parse(this.seater.text));
-
-                print('Register Supabase');
-                ToastMessage.showToastMessage();
-                Navigator.of(context).pushNamed('/email-login');
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                child: Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-          ]),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "Stepper Widget ",
+          ),
+          centerTitle: true,
         ),
+        body: Container(
+            padding: const EdgeInsets.all(20),
+            child: Stepper(
+              type: StepperType.horizontal,
+              currentStep: currentStep,
+              onStepCancel: () => currentStep == 0
+                  ? null
+                  : setState(() {
+                      currentStep -= 1;
+                    }),
+              onStepContinue: () {
+                bool isLastStep = (currentStep == getSteps().length - 1);
+                if (isLastStep) {
+                  //Do something with this information
+                } else {
+                  setState(() {
+                    currentStep += 1;
+                  });
+                }
+              },
+              onStepTapped: (step) => setState(() {
+                currentStep = step;
+              }),
+              steps: getSteps(),
+            )),
       ),
     );
+  }
+
+  List<Step> getSteps() {
+    return <Step>[
+      Step(
+        state: currentStep > 0 ? StepState.complete : StepState.indexed,
+        isActive: currentStep >= 0,
+        title: const Text("Account Info"),
+        content: Column(
+          children: const [
+            CustomInput(
+              hint: "First Name",
+              inputBorder: OutlineInputBorder(),
+            ),
+            CustomInput(
+              hint: "Last Name",
+              inputBorder: OutlineInputBorder(),
+            ),
+          ],
+        ),
+      ),
+      Step(
+        state: currentStep > 1 ? StepState.complete : StepState.indexed,
+        isActive: currentStep >= 1,
+        title: const Text("Address"),
+        content: Column(
+          children: const [
+            CustomInput(
+              hint: "City and State",
+              inputBorder: OutlineInputBorder(),
+            ),
+            CustomInput(
+              hint: "Postal Code",
+              inputBorder: OutlineInputBorder(),
+            ),
+          ],
+        ),
+      ),
+      Step(
+        state: currentStep > 2 ? StepState.complete : StepState.indexed,
+        isActive: currentStep >= 2,
+        title: const Text("Misc"),
+        content: Column(
+          children: const [
+            CustomInput(
+              hint: "Bio",
+              inputBorder: OutlineInputBorder(),
+            ),
+          ],
+        ),
+      ),
+    ];
   }
 }
