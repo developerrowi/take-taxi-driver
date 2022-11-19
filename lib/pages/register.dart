@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:take_taxi_driver/supabase/auth-supabase.dart';
 import '../widgets/custom_input.dart';
 import '../widgets/custom_button.dart';
+import 'package:take_taxi_driver/widgets/colors.dart';
 
 // import '../widgets/form.dart';
 import '../widgets/toast.dart';
@@ -34,13 +35,14 @@ class _RegisterState extends State<Register> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: yellowNormal,
           title: const Text(
-            "Stepper Widget ",
+            "Sign Up",
           ),
           centerTitle: true,
         ),
         body: Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(10),
             child: Stepper(
               type: StepperType.horizontal,
               currentStep: currentStep,
@@ -52,7 +54,10 @@ class _RegisterState extends State<Register> {
               onStepContinue: () {
                 bool isLastStep = (currentStep == getSteps().length - 1);
                 if (isLastStep) {
-                  //Do something with this information
+                  supabase.emailRegisterToSupabase(this.emailController.text, this.passwordController.text, this.firstName.text, this.lastName.text, this.phoneNumber.text, this.licenseNumber.text,
+                      this.bodyNumber.text, int.parse(this.seater.text));
+                  ToastMessage.showToastMessage();
+                  Navigator.of(context).pushNamed('/email-login');
                 } else {
                   setState(() {
                     currentStep += 1;
@@ -75,14 +80,47 @@ class _RegisterState extends State<Register> {
         isActive: currentStep >= 0,
         title: const Text("Account Info"),
         content: Column(
-          children: const [
-            CustomInput(
-              hint: "First Name",
-              inputBorder: OutlineInputBorder(),
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+              child: TextField(
+                controller: firstName,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'First Name',
+                ),
+              ),
             ),
-            CustomInput(
-              hint: "Last Name",
-              inputBorder: OutlineInputBorder(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+              child: TextField(
+                controller: lastName,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Last Name',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+              child: TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Email Address',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+              child: TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Password',
+                ),
+              ),
             ),
           ],
         ),
@@ -90,29 +128,38 @@ class _RegisterState extends State<Register> {
       Step(
         state: currentStep > 1 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 1,
-        title: const Text("Address"),
+        title: const Text("Driver Details"),
         content: Column(
-          children: const [
-            CustomInput(
-              hint: "City and State",
-              inputBorder: OutlineInputBorder(),
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+              child: TextField(
+                controller: licenseNumber,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'License Number',
+                ),
+              ),
             ),
-            CustomInput(
-              hint: "Postal Code",
-              inputBorder: OutlineInputBorder(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+              child: TextField(
+                controller: bodyNumber,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Body Number/Plate Number',
+                ),
+              ),
             ),
-          ],
-        ),
-      ),
-      Step(
-        state: currentStep > 2 ? StepState.complete : StepState.indexed,
-        isActive: currentStep >= 2,
-        title: const Text("Misc"),
-        content: Column(
-          children: const [
-            CustomInput(
-              hint: "Bio",
-              inputBorder: OutlineInputBorder(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+              child: TextField(
+                controller: seater,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Seater',
+                ),
+              ),
             ),
           ],
         ),
