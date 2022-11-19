@@ -46,11 +46,16 @@ class _RegisterState extends State<Register> {
             child: Stepper(
               type: StepperType.horizontal,
               currentStep: currentStep,
-              onStepCancel: () => currentStep == 0
-                  ? null
-                  : setState(() {
-                      currentStep -= 1;
-                    }),
+              onStepCancel: () {
+                bool isFirstStep = (currentStep == 0);
+                if (isFirstStep) {
+                  Navigator.of(context).pushNamed('/email-login');
+                } else {
+                  setState(() {
+                    currentStep -= 1;
+                  });
+                }
+              },
               onStepContinue: () {
                 bool isLastStep = (currentStep == getSteps().length - 1);
                 if (isLastStep) {
