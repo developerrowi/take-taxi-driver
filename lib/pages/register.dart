@@ -88,7 +88,7 @@ class _RegisterState extends State<Register> {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-              child: TextField(
+              child: TextFormField(
                 controller: firstName,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -98,7 +98,7 @@ class _RegisterState extends State<Register> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-              child: TextField(
+              child: TextFormField(
                 controller: lastName,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -108,7 +108,7 @@ class _RegisterState extends State<Register> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-              child: TextField(
+              child: TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -118,7 +118,7 @@ class _RegisterState extends State<Register> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-              child: TextField(
+              child: TextFormField(
                 controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
@@ -138,7 +138,7 @@ class _RegisterState extends State<Register> {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-              child: TextField(
+              child: TextFormField(
                 controller: licenseNumber,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -148,7 +148,7 @@ class _RegisterState extends State<Register> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-              child: TextField(
+              child: TextFormField(
                 controller: bodyNumber,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -158,7 +158,7 @@ class _RegisterState extends State<Register> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-              child: TextField(
+              child: TextFormField(
                 controller: seater,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
